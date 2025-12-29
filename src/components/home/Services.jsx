@@ -1,10 +1,5 @@
 import ServiceCard from "./ServiceCard";
-
-const services = [
-  { id: "baby", name: "Baby Care", price: 800 },
-  { id: "elderly", name: "Elderly Care", price: 1000 },
-  { id: "sick", name: "Sick Care", price: 1200 },
-];
+import services from "@/data/services";
 
 export default function Services() {
   return (

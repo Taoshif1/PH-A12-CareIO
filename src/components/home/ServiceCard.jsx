@@ -5,7 +5,15 @@ export default function ServiceCard({ service }) {
     <div className="card bg-base-100 shadow-xl">
       <div className="card-body">
         <h2 className="card-title">{service.name}</h2>
-        <p>Starting from ৳{service.price} / day</p>
+        <p className="mt-2 font-semibold">
+  ৳{service.pricePerDay} / day
+</p>
+
+<ul className="mt-4 list-disc pl-5 text-gray-600">
+  {service.features.map((feature, i) => (
+    <li key={i}>{feature}</li>
+  ))}
+</ul>
         <div className="card-actions justify-end">
           <Link
             href={`/service/${service.id}`}
