@@ -1,11 +1,12 @@
 'use client';
 
 import { getServiceById } from '@/data/services';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound, useRouter, useParams } from 'next/navigation';
 import { Clock, DollarSign, CheckCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
-export default function ServiceDetailPage({ params }) {
+export default function ServiceDetailPage() {
+  const params = useParams();
   const router = useRouter();
   const { user } = useAuth();
   const service = getServiceById(params.serviceId);
