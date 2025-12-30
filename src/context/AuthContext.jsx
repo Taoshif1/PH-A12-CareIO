@@ -73,10 +73,11 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
-      setUser(null);
-      router.push('/');
     } catch (error) {
       console.error('Logout failed:', error);
+    } finally {
+      setUser(null);
+      router.push('/');
     }
   };
 

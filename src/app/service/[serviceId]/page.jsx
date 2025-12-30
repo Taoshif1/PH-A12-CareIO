@@ -1,30 +1,26 @@
+'use client';
+
 import { getServiceById } from '@/data/services';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { notFound, useRouter } from 'next/navigation';
 import { Clock, DollarSign, CheckCircle } from 'lucide-react';
-
-export async function generateMetadata({ params }) {
-  const service = getServiceById(params.serviceId);
-  
-  if (!service) {
-    return {
-      title: 'Service Not Found',
-    };
-  }
-
-  return {
-    title: `${service.name} - Care.IO`,
-    description: service.fullDescription,
-    keywords: `${service.name}, ${service.title}, care services Bangladesh`,
-  };
-}
+import { useAuth } from '@/context/AuthContext';
 
 export default function ServiceDetailPage({ params }) {
+  const router = useRouter();
+  const { user } = useAuth();
   const service = getServiceById(params.serviceId);
 
   if (!service) {
     notFound();
   }
+
+  const handleBookService = () => {
+    if (!user) {
+      router.push(`/login?redirect=/booking/${service.id}`);
+    } else {
+      router.push(`/booking/${service.id}`);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -90,12 +86,12 @@ export default function ServiceDetailPage({ params }) {
                   </div>
                 </div>
 
-                <Link
-                  href={`/booking/${service.id}`}
+                <button
+                  onClick={handleBookService}
                   className="btn btn-primary w-full btn-lg"
                 >
                   Book This Service
-                </Link>
+                </button>
               </div>
             </div>
           </div>
