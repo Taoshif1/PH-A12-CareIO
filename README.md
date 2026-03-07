@@ -185,8 +185,8 @@ PH-A12/
 │       ├── email.js
 │       └── utlis.js
 ├── public/
-├── data/ (auto-generated)
-├── .env.local (create this)
+├── data/ 
+├── .env.local 
 ├── .env.example
 ├── package.json
 └── README.md
